@@ -202,7 +202,7 @@ void UART0_RX_TX_IRQHandler_UART(void)
 	}
 }
 
-void UART2_RX_TX_IRQHandler(void)
+void UART2_RX_TX_IRQHandler_UART(void)
 {
 	static uint8_t isSending = false;
 	uint32_t status = UART2_S1;
@@ -348,6 +348,22 @@ void UART_setEnabled(UART_Config *channel, uint8_t enabled)
 		{
 			HAL.IOs->config->reset(&HAL.IOs->pins->DIO10);
 			HAL.IOs->config->reset(&HAL.IOs->pins->DIO11);
+		}
+		break;
+	case UART_PINS_3:
+		if (enabled)
+		{
+			HAL.IOs->pins->WIRELESS_TX.configuration.GPIO_Mode  = GPIO_Mode_AF3;  // TxD (DIO10)
+			HAL.IOs->pins->WIRELESS_RX.configuration.GPIO_Mode  = GPIO_Mode_AF3;  // RxD (DIO11)
+			HAL.IOs->pins->WIRELESS_TX.configuration.GPIO_OType = GPIO_OType_OD;  // TxD as open drain output
+			HAL.IOs->pins->WIRELESS_RX.configuration.GPIO_PuPd  = GPIO_PuPd_UP;   // RxD with pull-up resistor
+			HAL.IOs->config->set(&HAL.IOs->pins->WIRELESS_TX);
+			HAL.IOs->config->set(&HAL.IOs->pins->WIRELESS_RX);
+		}
+		else
+		{
+			HAL.IOs->config->reset(&HAL.IOs->pins->WIRELESS_TX);
+			HAL.IOs->config->reset(&HAL.IOs->pins->WIRELESS_RX);
 		}
 		break;
 	case UART_PINS_1:

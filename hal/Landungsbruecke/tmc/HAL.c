@@ -25,7 +25,8 @@ const HALTypeDef HAL =
 	.RS232        = &RS232,
 	.WLAN         = &WLAN,
 	.Timer        = &Timer,
-	.UART         = &UART
+	.UART         = &UART,
+	.UART_Host    = &UART_Host
 };
 
 static void init(void)
@@ -43,9 +44,14 @@ static void init(void)
 	LEDs.init();
 	ADCs.init();
 	SPI.init();
-	WLAN.init();
 	RS232.init();
 	USB.init();
+//#if defined(ENABLE_UART_HOST_0) || defined(ENABLE_UART_HOST_2)
+	UART_Host.rxtx.init();
+//#endif
+#if defined(ENABLE_WLAN)
+	WLAN.init();
+#endif
 
 	// Determine HW version
 	get_hwid();

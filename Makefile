@@ -73,6 +73,7 @@ SRC 			+= hal/$(DEVICE)/tmc/WLAN.c
 SRC 			+= hal/$(DEVICE)/tmc/Timer.c
 SRC 			+= hal/$(DEVICE)/tmc/UART.c
 SRC 			+= hal/$(DEVICE)/tmc/RXTX.c
+SRC 			+= hal/$(DEVICE)/tmc/UART_Host.c
 
 # Control
 SRC 			+= main.c
@@ -124,6 +125,11 @@ SRC				+= TMC-API/tmc/ic/TMC8462/TMC8462.c
 SRC				+= TMC-API/tmc/ic/TMCC160/TMCC160.c
 
 EXTRAINCDIRS 	+= hal/$(DEVICE)
+
+# Enable/disable special IO
+#CDEFS += -DENABLE_WLAN
+CDEFS += -DENABLE_UART_HOST_0
+#CDEFS += -DENABLE_UART_HOST_2
 
 ### Chip-specific variables and files ###
 # Startrampe

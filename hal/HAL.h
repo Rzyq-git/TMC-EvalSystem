@@ -13,6 +13,7 @@
 #include "Timer.h"
 #include "SysTick.h"
 #include "UART.h"
+#include "UART_Host.h"
 
 typedef struct
 {
@@ -34,6 +35,7 @@ typedef struct
 	RXTXTypeDef                *WLAN;
 	TimerTypeDef               *Timer;
 	UART_Config                *UART;
+	UART_Config                *UART_Host;
 } HALTypeDef;
 
 const HALTypeDef HAL;

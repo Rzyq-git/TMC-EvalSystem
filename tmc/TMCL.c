@@ -439,7 +439,7 @@ void tmcl_init()
 	ActualCommand.Error  = TMCL_RX_ERROR_NODATA;
 	interfaces[0]        = *HAL.USB;
 	interfaces[1]        = *HAL.RS232;
-	interfaces[2]        = *HAL.WLAN;
+	interfaces[2]        = HAL.UART_Host->rxtx;
 	numberOfInterfaces   = 3;
 }
 
