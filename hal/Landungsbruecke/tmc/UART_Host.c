@@ -35,7 +35,7 @@ UART_Config UART_Host =
 		.rxN             = rxN,
 		.txN             = txN,
 		.clearBuffers    = clearBuffers,
-		.baudRate        = 4800,
+		.baudRate        = 9600,
 		.bytesAvailable  = bytesAvailable
 	}
 };
